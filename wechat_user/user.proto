@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package trpc.wechat.user;
+option go_package = "github.com/ustcLyric/wechat-trpcprotocol/wechat_user";
+
+// 用户登陆请求
+message UserLoginRequest {
+    string code = 1;          // 微信临时登录凭证
+    string device_id = 2;     // 设备唯一标识
+    string device_type = 3;   // 设备类型 (iOS/Android/Web)
+}
+
+// 用户登陆响应
+message UserLoginResponse {
+    string session_key = 1;   // 会话密钥
+    string openid = 2;        // 用户唯一标识
+    string unionid = 3;       // 跨应用统一ID（可选）
+    int32 expires_in = 4;     // 会话有效期（秒）
+    string token = 5;         // 访问令牌
+}
+
+
+// 用户信息获取
+message GetUserInfoRequest {
+    string session_token = 1; // 会话凭证
+    string openid = 2;         // 要查询的用户openid
+}
+message GetUserInfoResponse {
+    string nickname = 1;       // 用户昵称
+    string avatar_url = 2;     // 头像URL
+    Gender gender = 3;          // 性别
+    string city = 4;           // 城市
+    string province = 5;       // 省份
+    string country = 6;        // 国家
+    string openid = 7;         // 用户唯一标识
+    string unionid = 8;        // 跨应用统一ID（可选）
+    enum Gender {
+        UNKNOWN = 0;
+        MALE = 1;
+        FEMALE = 2;
+    }
+
+}
+
+// HelloWorldService handles hello request and echo message.
+service WeChatUserService {
+    // 用户登陆
+    rpc UserLogin(UserLoginRequest) returns (UserLoginResponse){
+    };
+    // 获取用户信息
+    rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse){
+    };
+}
