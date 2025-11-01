@@ -17,32 +17,32 @@ import (
 	client "trpc.group/trpc-go/trpc-go/client"
 )
 
-// MockWeChatUserServiceService is a mock of WeChatUserServiceService interface.
-type MockWeChatUserServiceService struct {
+// MockWeChatUserService is a mock of WeChatUserService interface.
+type MockWeChatUserService struct {
 	ctrl     *gomock.Controller
-	recorder *MockWeChatUserServiceServiceMockRecorder
+	recorder *MockWeChatUserServiceMockRecorder
 	isgomock struct{}
 }
 
-// MockWeChatUserServiceServiceMockRecorder is the mock recorder for MockWeChatUserServiceService.
-type MockWeChatUserServiceServiceMockRecorder struct {
-	mock *MockWeChatUserServiceService
+// MockWeChatUserServiceMockRecorder is the mock recorder for MockWeChatUserService.
+type MockWeChatUserServiceMockRecorder struct {
+	mock *MockWeChatUserService
 }
 
-// NewMockWeChatUserServiceService creates a new mock instance.
-func NewMockWeChatUserServiceService(ctrl *gomock.Controller) *MockWeChatUserServiceService {
-	mock := &MockWeChatUserServiceService{ctrl: ctrl}
-	mock.recorder = &MockWeChatUserServiceServiceMockRecorder{mock}
+// NewMockWeChatUserService creates a new mock instance.
+func NewMockWeChatUserService(ctrl *gomock.Controller) *MockWeChatUserService {
+	mock := &MockWeChatUserService{ctrl: ctrl}
+	mock.recorder = &MockWeChatUserServiceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockWeChatUserServiceService) EXPECT() *MockWeChatUserServiceServiceMockRecorder {
+func (m *MockWeChatUserService) EXPECT() *MockWeChatUserServiceMockRecorder {
 	return m.recorder
 }
 
 // GetUserInfo mocks base method.
-func (m *MockWeChatUserServiceService) GetUserInfo(ctx context.Context, req *GetUserInfoRequest) (*GetUserInfoResponse, error) {
+func (m *MockWeChatUserService) GetUserInfo(ctx context.Context, req *GetUserInfoRequest) (*GetUserInfoResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUserInfo", ctx, req)
 	ret0, _ := ret[0].(*GetUserInfoResponse)
@@ -51,13 +51,13 @@ func (m *MockWeChatUserServiceService) GetUserInfo(ctx context.Context, req *Get
 }
 
 // GetUserInfo indicates an expected call of GetUserInfo.
-func (mr *MockWeChatUserServiceServiceMockRecorder) GetUserInfo(ctx, req any) *gomock.Call {
+func (mr *MockWeChatUserServiceMockRecorder) GetUserInfo(ctx, req any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserInfo", reflect.TypeOf((*MockWeChatUserServiceService)(nil).GetUserInfo), ctx, req)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserInfo", reflect.TypeOf((*MockWeChatUserService)(nil).GetUserInfo), ctx, req)
 }
 
 // UserLogin mocks base method.
-func (m *MockWeChatUserServiceService) UserLogin(ctx context.Context, req *UserLoginRequest) (*UserLoginResponse, error) {
+func (m *MockWeChatUserService) UserLogin(ctx context.Context, req *UserLoginRequest) (*UserLoginResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UserLogin", ctx, req)
 	ret0, _ := ret[0].(*UserLoginResponse)
@@ -66,37 +66,37 @@ func (m *MockWeChatUserServiceService) UserLogin(ctx context.Context, req *UserL
 }
 
 // UserLogin indicates an expected call of UserLogin.
-func (mr *MockWeChatUserServiceServiceMockRecorder) UserLogin(ctx, req any) *gomock.Call {
+func (mr *MockWeChatUserServiceMockRecorder) UserLogin(ctx, req any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserLogin", reflect.TypeOf((*MockWeChatUserServiceService)(nil).UserLogin), ctx, req)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserLogin", reflect.TypeOf((*MockWeChatUserService)(nil).UserLogin), ctx, req)
 }
 
-// MockWeChatUserServiceClientProxy is a mock of WeChatUserServiceClientProxy interface.
-type MockWeChatUserServiceClientProxy struct {
+// MockWeChatUserClientProxy is a mock of WeChatUserClientProxy interface.
+type MockWeChatUserClientProxy struct {
 	ctrl     *gomock.Controller
-	recorder *MockWeChatUserServiceClientProxyMockRecorder
+	recorder *MockWeChatUserClientProxyMockRecorder
 	isgomock struct{}
 }
 
-// MockWeChatUserServiceClientProxyMockRecorder is the mock recorder for MockWeChatUserServiceClientProxy.
-type MockWeChatUserServiceClientProxyMockRecorder struct {
-	mock *MockWeChatUserServiceClientProxy
+// MockWeChatUserClientProxyMockRecorder is the mock recorder for MockWeChatUserClientProxy.
+type MockWeChatUserClientProxyMockRecorder struct {
+	mock *MockWeChatUserClientProxy
 }
 
-// NewMockWeChatUserServiceClientProxy creates a new mock instance.
-func NewMockWeChatUserServiceClientProxy(ctrl *gomock.Controller) *MockWeChatUserServiceClientProxy {
-	mock := &MockWeChatUserServiceClientProxy{ctrl: ctrl}
-	mock.recorder = &MockWeChatUserServiceClientProxyMockRecorder{mock}
+// NewMockWeChatUserClientProxy creates a new mock instance.
+func NewMockWeChatUserClientProxy(ctrl *gomock.Controller) *MockWeChatUserClientProxy {
+	mock := &MockWeChatUserClientProxy{ctrl: ctrl}
+	mock.recorder = &MockWeChatUserClientProxyMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockWeChatUserServiceClientProxy) EXPECT() *MockWeChatUserServiceClientProxyMockRecorder {
+func (m *MockWeChatUserClientProxy) EXPECT() *MockWeChatUserClientProxyMockRecorder {
 	return m.recorder
 }
 
 // GetUserInfo mocks base method.
-func (m *MockWeChatUserServiceClientProxy) GetUserInfo(ctx context.Context, req *GetUserInfoRequest, opts ...client.Option) (*GetUserInfoResponse, error) {
+func (m *MockWeChatUserClientProxy) GetUserInfo(ctx context.Context, req *GetUserInfoRequest, opts ...client.Option) (*GetUserInfoResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, req}
 	for _, a := range opts {
@@ -109,14 +109,14 @@ func (m *MockWeChatUserServiceClientProxy) GetUserInfo(ctx context.Context, req 
 }
 
 // GetUserInfo indicates an expected call of GetUserInfo.
-func (mr *MockWeChatUserServiceClientProxyMockRecorder) GetUserInfo(ctx, req any, opts ...any) *gomock.Call {
+func (mr *MockWeChatUserClientProxyMockRecorder) GetUserInfo(ctx, req any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]any{ctx, req}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserInfo", reflect.TypeOf((*MockWeChatUserServiceClientProxy)(nil).GetUserInfo), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserInfo", reflect.TypeOf((*MockWeChatUserClientProxy)(nil).GetUserInfo), varargs...)
 }
 
 // UserLogin mocks base method.
-func (m *MockWeChatUserServiceClientProxy) UserLogin(ctx context.Context, req *UserLoginRequest, opts ...client.Option) (*UserLoginResponse, error) {
+func (m *MockWeChatUserClientProxy) UserLogin(ctx context.Context, req *UserLoginRequest, opts ...client.Option) (*UserLoginResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, req}
 	for _, a := range opts {
@@ -129,8 +129,8 @@ func (m *MockWeChatUserServiceClientProxy) UserLogin(ctx context.Context, req *U
 }
 
 // UserLogin indicates an expected call of UserLogin.
-func (mr *MockWeChatUserServiceClientProxyMockRecorder) UserLogin(ctx, req any, opts ...any) *gomock.Call {
+func (mr *MockWeChatUserClientProxyMockRecorder) UserLogin(ctx, req any, opts ...any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]any{ctx, req}, opts...)
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserLogin", reflect.TypeOf((*MockWeChatUserServiceClientProxy)(nil).UserLogin), varargs...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UserLogin", reflect.TypeOf((*MockWeChatUserClientProxy)(nil).UserLogin), varargs...)
 }

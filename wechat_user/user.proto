@@ -43,7 +43,7 @@ message GetUserInfoResponse {
 }
 
 // HelloWorldService handles hello request and echo message.
-service WeChatUserService {
+service WeChatUser {
     // 用户登陆
     rpc UserLogin(UserLoginRequest) returns (UserLoginResponse){
     };

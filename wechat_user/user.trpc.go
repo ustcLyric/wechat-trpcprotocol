@@ -17,22 +17,22 @@ import (
 
 // START ======================================= Server Service Definition ======================================= START
 
-// WeChatUserServiceService defines service.
-type WeChatUserServiceService interface {
+// WeChatUserService defines service.
+type WeChatUserService interface {
 	// UserLogin 用户登陆
 	UserLogin(ctx context.Context, req *UserLoginRequest) (*UserLoginResponse, error)
 	// GetUserInfo 获取用户信息
 	GetUserInfo(ctx context.Context, req *GetUserInfoRequest) (*GetUserInfoResponse, error)
 }
 
-func WeChatUserServiceService_UserLogin_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
+func WeChatUserService_UserLogin_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
 	req := &UserLoginRequest{}
 	filters, err := f(req)
 	if err != nil {
 		return nil, err
 	}
 	handleFunc := func(ctx context.Context, reqbody interface{}) (interface{}, error) {
-		return svr.(WeChatUserServiceService).UserLogin(ctx, reqbody.(*UserLoginRequest))
+		return svr.(WeChatUserService).UserLogin(ctx, reqbody.(*UserLoginRequest))
 	}
 
 	var rsp interface{}
@@ -43,14 +43,14 @@ func WeChatUserServiceService_UserLogin_Handler(svr interface{}, ctx context.Con
 	return rsp, nil
 }
 
-func WeChatUserServiceService_GetUserInfo_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
+func WeChatUserService_GetUserInfo_Handler(svr interface{}, ctx context.Context, f server.FilterFunc) (interface{}, error) {
 	req := &GetUserInfoRequest{}
 	filters, err := f(req)
 	if err != nil {
 		return nil, err
 	}
 	handleFunc := func(ctx context.Context, reqbody interface{}) (interface{}, error) {
-		return svr.(WeChatUserServiceService).GetUserInfo(ctx, reqbody.(*GetUserInfoRequest))
+		return svr.(WeChatUserService).GetUserInfo(ctx, reqbody.(*GetUserInfoRequest))
 	}
 
 	var rsp interface{}
@@ -61,41 +61,41 @@ func WeChatUserServiceService_GetUserInfo_Handler(svr interface{}, ctx context.C
 	return rsp, nil
 }
 
-// WeChatUserServiceServer_ServiceDesc descriptor for server.RegisterService.
-var WeChatUserServiceServer_ServiceDesc = server.ServiceDesc{
-	ServiceName: "trpc.wechat.user.WeChatUserService",
-	HandlerType: ((*WeChatUserServiceService)(nil)),
+// WeChatUserServer_ServiceDesc descriptor for server.RegisterService.
+var WeChatUserServer_ServiceDesc = server.ServiceDesc{
+	ServiceName: "trpc.wechat.user.WeChatUser",
+	HandlerType: ((*WeChatUserService)(nil)),
 	Methods: []server.Method{
 		{
-			Name: "/trpc.wechat.user.WeChatUserService/UserLogin",
-			Func: WeChatUserServiceService_UserLogin_Handler,
+			Name: "/trpc.wechat.user.WeChatUser/UserLogin",
+			Func: WeChatUserService_UserLogin_Handler,
 		},
 		{
-			Name: "/trpc.wechat.user.WeChatUserService/GetUserInfo",
-			Func: WeChatUserServiceService_GetUserInfo_Handler,
+			Name: "/trpc.wechat.user.WeChatUser/GetUserInfo",
+			Func: WeChatUserService_GetUserInfo_Handler,
 		},
 	},
 }
 
-// RegisterWeChatUserServiceService registers service.
-func RegisterWeChatUserServiceService(s server.Service, svr WeChatUserServiceService) {
-	if err := s.Register(&WeChatUserServiceServer_ServiceDesc, svr); err != nil {
-		panic(fmt.Sprintf("WeChatUserService register error:%v", err))
+// RegisterWeChatUserService registers service.
+func RegisterWeChatUserService(s server.Service, svr WeChatUserService) {
+	if err := s.Register(&WeChatUserServer_ServiceDesc, svr); err != nil {
+		panic(fmt.Sprintf("WeChatUser register error:%v", err))
 	}
 }
 
 // START --------------------------------- Default Unimplemented Server Service --------------------------------- START
 
-type UnimplementedWeChatUserService struct{}
+type UnimplementedWeChatUser struct{}
 
 // UserLogin 用户登陆
-func (s *UnimplementedWeChatUserService) UserLogin(ctx context.Context, req *UserLoginRequest) (*UserLoginResponse, error) {
-	return nil, errors.New("rpc UserLogin of service WeChatUserService is not implemented")
+func (s *UnimplementedWeChatUser) UserLogin(ctx context.Context, req *UserLoginRequest) (*UserLoginResponse, error) {
+	return nil, errors.New("rpc UserLogin of service WeChatUser is not implemented")
 }
 
 // GetUserInfo 获取用户信息
-func (s *UnimplementedWeChatUserService) GetUserInfo(ctx context.Context, req *GetUserInfoRequest) (*GetUserInfoResponse, error) {
-	return nil, errors.New("rpc GetUserInfo of service WeChatUserService is not implemented")
+func (s *UnimplementedWeChatUser) GetUserInfo(ctx context.Context, req *GetUserInfoRequest) (*GetUserInfoResponse, error) {
+	return nil, errors.New("rpc GetUserInfo of service WeChatUser is not implemented")
 }
 
 // END --------------------------------- Default Unimplemented Server Service --------------------------------- END
@@ -104,31 +104,31 @@ func (s *UnimplementedWeChatUserService) GetUserInfo(ctx context.Context, req *G
 
 // START ======================================= Client Service Definition ======================================= START
 
-// WeChatUserServiceClientProxy defines service client proxy
-type WeChatUserServiceClientProxy interface {
+// WeChatUserClientProxy defines service client proxy
+type WeChatUserClientProxy interface {
 	// UserLogin 用户登陆
 	UserLogin(ctx context.Context, req *UserLoginRequest, opts ...client.Option) (rsp *UserLoginResponse, err error)
 	// GetUserInfo 获取用户信息
 	GetUserInfo(ctx context.Context, req *GetUserInfoRequest, opts ...client.Option) (rsp *GetUserInfoResponse, err error)
 }
 
-type WeChatUserServiceClientProxyImpl struct {
+type WeChatUserClientProxyImpl struct {
 	client client.Client
 	opts   []client.Option
 }
 
-var NewWeChatUserServiceClientProxy = func(opts ...client.Option) WeChatUserServiceClientProxy {
-	return &WeChatUserServiceClientProxyImpl{client: client.DefaultClient, opts: opts}
+var NewWeChatUserClientProxy = func(opts ...client.Option) WeChatUserClientProxy {
+	return &WeChatUserClientProxyImpl{client: client.DefaultClient, opts: opts}
 }
 
-func (c *WeChatUserServiceClientProxyImpl) UserLogin(ctx context.Context, req *UserLoginRequest, opts ...client.Option) (*UserLoginResponse, error) {
+func (c *WeChatUserClientProxyImpl) UserLogin(ctx context.Context, req *UserLoginRequest, opts ...client.Option) (*UserLoginResponse, error) {
 	ctx, msg := codec.WithCloneMessage(ctx)
 	defer codec.PutBackMessage(msg)
-	msg.WithClientRPCName("/trpc.wechat.user.WeChatUserService/UserLogin")
-	msg.WithCalleeServiceName(WeChatUserServiceServer_ServiceDesc.ServiceName)
+	msg.WithClientRPCName("/trpc.wechat.user.WeChatUser/UserLogin")
+	msg.WithCalleeServiceName(WeChatUserServer_ServiceDesc.ServiceName)
 	msg.WithCalleeApp("wechat")
 	msg.WithCalleeServer("user")
-	msg.WithCalleeService("WeChatUserService")
+	msg.WithCalleeService("WeChatUser")
 	msg.WithCalleeMethod("UserLogin")
 	msg.WithSerializationType(codec.SerializationTypePB)
 	callopts := make([]client.Option, 0, len(c.opts)+len(opts))
@@ -141,14 +141,14 @@ func (c *WeChatUserServiceClientProxyImpl) UserLogin(ctx context.Context, req *U
 	return rsp, nil
 }
 
-func (c *WeChatUserServiceClientProxyImpl) GetUserInfo(ctx context.Context, req *GetUserInfoRequest, opts ...client.Option) (*GetUserInfoResponse, error) {
+func (c *WeChatUserClientProxyImpl) GetUserInfo(ctx context.Context, req *GetUserInfoRequest, opts ...client.Option) (*GetUserInfoResponse, error) {
 	ctx, msg := codec.WithCloneMessage(ctx)
 	defer codec.PutBackMessage(msg)
-	msg.WithClientRPCName("/trpc.wechat.user.WeChatUserService/GetUserInfo")
-	msg.WithCalleeServiceName(WeChatUserServiceServer_ServiceDesc.ServiceName)
+	msg.WithClientRPCName("/trpc.wechat.user.WeChatUser/GetUserInfo")
+	msg.WithCalleeServiceName(WeChatUserServer_ServiceDesc.ServiceName)
 	msg.WithCalleeApp("wechat")
 	msg.WithCalleeServer("user")
-	msg.WithCalleeService("WeChatUserService")
+	msg.WithCalleeService("WeChatUser")
 	msg.WithCalleeMethod("GetUserInfo")
 	msg.WithSerializationType(codec.SerializationTypePB)
 	callopts := make([]client.Option, 0, len(c.opts)+len(opts))
